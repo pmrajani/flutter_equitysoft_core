@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "620198935217",
+    "project_id": "equitysoft-core",
+    "storage_bucket": "equitysoft-core.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:620198935217:android:c5c26f3c804e69f4708090",
+        "android_client_info": {
+          "package_name": "com.equitysoft.flutter_equitysoft_core"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "620198935217-c2oke3kl31bp1tg3d0tlgt35j01mt23t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.equitysoft.flutter_equitysoft_core",
+            "certificate_hash": "407875c3e94b68bb7aae00cc9983957ddf726cb6"
+          }
+        },
+        {
+          "client_id": "620198935217-2jbve4jc8fdqmk3s2c39r8e3q58pqn19.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWyGiS2r7x-JjzYvRkDDOrZgNntMjxWZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "620198935217-2jbve4jc8fdqmk3s2c39r8e3q58pqn19.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
