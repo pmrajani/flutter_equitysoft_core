@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_equitysoft_core/utils/color_utils.dart';
 import 'package:get/get.dart';
 
 import '../../controller/sign_in_with_controller.dart';
 import '../../service/firebase_auth/auth_service.dart';
 import '../../utils/function_utils.dart';
-import '../../utils/image_utils.dart';
 
-class SignInWithGoogleScreen extends StatelessWidget {
-  SignInWithGoogleScreen({Key? key}) : super(key: key);
+class AnonymouslyLoginScreen extends StatelessWidget {
+  AnonymouslyLoginScreen({Key? key}) : super(key: key);
 
   final SignInWithController controller = Get.put(SignInWithController());
 
@@ -20,7 +20,7 @@ class SignInWithGoogleScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Sign In With Google"),
+          title: const Text("Sign In As Anonymously"),
         ),
         body: _bodyWidget(),
       ),
@@ -34,41 +34,27 @@ class SignInWithGoogleScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _getGoogleLogIn(),
+            _getAnonymouslyLogIn(),
           ],
         ),
       ),
     );
   }
 
-  Widget _getGoogleLogIn() {
+  Widget _getAnonymouslyLogIn() {
     return SizedBox(
       width: double.infinity,
       height: 40,
       child: ElevatedButton(
         onPressed: () {
-          _signInWithGoogle();
+          _signIn();
         },
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 4.0),
-              child: Image.asset(
-                ImageUtils.googleLogo,
-                height: 35.0,
-                width: 35.0,
-              ),
-            ),
-            const Spacer(),
-            const Text(
-              "Sign In With Google",
-            ),
-            const Spacer(),
-          ],
+        child: const Text(
+          "Sign In As Anonymously",
         ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            Colors.redAccent,
+            AppColors.appColorBlue,
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
@@ -80,13 +66,13 @@ class SignInWithGoogleScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _signInWithGoogle() async {
-    controller.user = await AuthService.googleSignIn();
+  Future<void> _signIn() async {
+    controller.user = await AuthService.singInAnonymously();
 
     if (controller.user != null) {
       CommonValidate.snackBar(
         title: "Success",
-        message: "Sign in successfully with google",
+        message: "Sign in successfully with Anonymously",
         isSuccess: true,
       );
     } else {
@@ -99,7 +85,7 @@ class SignInWithGoogleScreen extends StatelessWidget {
 
   Future<void> _signOut() async {
     if (controller.user != null) {
-      await AuthService.signOutGoogle();
+      await AuthService.signOut();
     }
     Get.back();
   }

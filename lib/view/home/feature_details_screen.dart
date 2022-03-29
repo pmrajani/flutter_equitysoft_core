@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../utils/color_utils.dart';
+import '../login_sign_up/anonymously_login_screen.dart';
+import '../login_sign_up/forgot_password_screen.dart';
 import '../login_sign_up/login_with_apple_screen.dart';
 import '../login_sign_up/normal_login_screen.dart';
+import '../login_sign_up/normal_sign_up_screen.dart';
 import '../login_sign_up/sign_in_with_face_book_screen.dart';
 import '../login_sign_up/sign_in_with_google_screen.dart';
+import '../login_sign_up/sign_in_with_phone_screen.dart';
 
 class FeatureDetailsScreen extends StatelessWidget {
   const FeatureDetailsScreen({Key? key}) : super(key: key);
@@ -23,42 +27,67 @@ class FeatureDetailsScreen extends StatelessWidget {
   Widget _bodyWidget(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
-      child: Column(
-        children: [
-          _cardView(
-            title: "Google",
-            subTitle: "Sign In With Google",
-            onTap: () {
-              Get.to(() => SignInWithGoogleScreen());
-            },
-          ),
-          _cardView(
-            title: "FaceBook",
-            subTitle: "Sign In With FaceBook",
-            onTap: () {
-              Get.to(() => SignInWithFaceBookScreen());
-            },
-          ),
-          _cardView(
-            title: "Apple",
-            subTitle: "Sign In With Apple",
-            onTap: () {
-              Get.to(() => LoginWithApple());
-            },
-          ),
-          _cardView(
-            title: "Email And Password",
-            subTitle: "Sign In With Email and Password",
-            onTap: () {
-              Get.to(() => NormalLoginScreen());
-            },
-          ),
-          _cardView(
-            title: "Anonymously",
-            subTitle: "Sign In With Anonymously",
-            onTap: () {},
-          ),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _cardView(
+              title: "Google",
+              subTitle: "Sign In With Google",
+              onTap: () {
+                Get.to(() => SignInWithGoogleScreen());
+              },
+            ),
+            _cardView(
+              title: "FaceBook",
+              subTitle: "Sign In With FaceBook",
+              onTap: () {
+                Get.to(() => SignInWithFaceBookScreen());
+              },
+            ),
+            _cardView(
+              title: "Apple",
+              subTitle: "Sign In With Apple",
+              onTap: () {
+                Get.to(() => LoginWithApple());
+              },
+            ),
+            _cardView(
+              title: "Email And Password",
+              subTitle: "Sign Up With Email and Password",
+              onTap: () {
+                Get.to(() => NormalSignUpScreen());
+              },
+            ),
+            _cardView(
+              title: "Email And Password",
+              subTitle: "Sign In With Email and Password",
+              onTap: () {
+                Get.to(() => NormalLoginScreen());
+              },
+            ),
+            _cardView(
+              title: "Anonymously",
+              subTitle: "Sign In With Anonymously",
+              onTap: () {
+                Get.to(() => AnonymouslyLoginScreen());
+              },
+            ),
+            _cardView(
+              title: "Phone",
+              subTitle: "Sign in with Phone",
+              onTap: () {
+                Get.to(() => SignInWithPhoneScreen());
+              },
+            ),
+            _cardView(
+              title: "Forgot Password",
+              subTitle: "Sent forgot password reset link",
+              onTap: () {
+                Get.to(() => ForgotPasswordScreen());
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

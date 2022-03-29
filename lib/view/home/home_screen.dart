@@ -31,8 +31,43 @@ class HomeScreen extends StatelessWidget {
               },
             ),
             _cardView(
+              title: "Firebase Auth Service",
+              auther: "Rajan Rajani",
+              onTap: () {},
+            ),
+            _cardView(
+              title: "Node Functions (Notifications)",
+              auther: "Rajan Rajani",
+              onTap: () {},
+            ),
+            _cardView(
+              title: "Notification Service (App Side)",
+              auther: "Rajan Rajani",
+              onTap: () {},
+            ),
+            _cardView(
               title: "Get X",
               auther: "Lakhan Purohit",
+              onTap: () {},
+            ),
+            _cardView(
+              title: "App theme",
+              auther: "Pankaj Khasiya",
+              onTap: () {},
+            ),
+            _cardView(
+              title: "File picker",
+              auther: "Pankaj Khasiya",
+              onTap: () {},
+            ),
+            _cardView(
+              title: "File compress",
+              auther: "Pankaj Khasiya",
+              onTap: () {},
+            ),
+            _cardView(
+              title: "File upload",
+              auther: "Pankaj Khasiya",
               onTap: () {},
             ),
           ],
@@ -71,7 +106,7 @@ class HomeScreen extends StatelessWidget {
             style: TextStyle(
               fontSize: 15.0,
               color: AppColors.blackColor.withOpacity(0.75),
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),

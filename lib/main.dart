@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Equitysoft HRM",
+      title: "Equitysoft CORE",
       debugShowCheckedModeBanner: false,
       theme: Themes.lightTheme,
       defaultTransition: Transition.cupertino,

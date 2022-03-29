@@ -36,11 +36,17 @@ dependencies:
   cupertino_icons: ^1.0.4
   get: ^4.6.1
   logger: ^1.1.0
+  otp_text_field: ^1.1.2
+  intl: ^0.17.0
 
   #FIREBASE
   firebase_auth: ^3.3.11
   cloud_firestore: ^3.1.10
   firebase_storage: ^10.2.9
+
+  # NOTIFICATIONS
+  firebase_messaging: ^11.2.11
+  flutter_local_notifications: ^9.4.0
 
   #SOCOAL-MEDIA
   google_sign_in: ^5.2.4

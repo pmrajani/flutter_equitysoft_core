@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_equitysoft_core/controller/normal_login_controller.dart';
 import 'package:flutter_equitysoft_core/service/firebase_auth/auth_service.dart';
@@ -6,8 +7,8 @@ import 'package:get/get.dart';
 
 import '../../utils/function_utils.dart';
 
-class NormalLoginScreen extends StatelessWidget {
-  NormalLoginScreen({Key? key}) : super(key: key);
+class NormalSignUpScreen extends StatelessWidget {
+  NormalSignUpScreen({Key? key}) : super(key: key);
 
   final NormalLoginController controller = Get.put(NormalLoginController());
 
@@ -20,7 +21,7 @@ class NormalLoginScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Sign In With Email And Password"),
+          title: const Text("Sign Up With Email And Password"),
         ),
         body: _bodyWidget(),
       ),
@@ -76,11 +77,11 @@ class NormalLoginScreen extends StatelessWidget {
                       title: "Password Is Empty",
                       message: "Please enter your password");
                 } else {
-                  _signIn();
+                  _signUp();
                 }
               },
               child: const Text(
-                "Sign In",
+                "Sign Up",
               ),
               style: ButtonStyle(
                 backgroundColor:
@@ -98,13 +99,13 @@ class NormalLoginScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _signIn() async {
-    controller.userId = await AuthService.singIn(
+  Future<void> _signUp() async {
+    UserCredential? credential = await AuthService.signUp(
       email: controller.emailTextController.value.text,
       password: controller.passwordTextController.value.text,
     );
 
-    if (controller.userId.isNotEmpty) {
+    if (credential!.user != null) {
       CommonValidate.snackBar(
         title: "Success",
         message: "Sign in successfully with email",

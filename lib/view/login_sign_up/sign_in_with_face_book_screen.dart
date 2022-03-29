@@ -3,7 +3,7 @@ import 'package:flutter_equitysoft_core/utils/image_utils.dart';
 import 'package:get/get.dart';
 
 import '../../controller/sign_in_with_controller.dart';
-import '../../service/auth_service.dart';
+import '../../service/firebase_auth/auth_service.dart';
 import '../../utils/function_utils.dart';
 
 /// NOTE : CREATE YOUR HASE KEY :
