@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../utils/color_utils.dart';
-import '../login_sign_up/anonymously_login_screen.dart';
-import '../login_sign_up/forgot_password_screen.dart';
-import '../login_sign_up/login_with_apple_screen.dart';
-import '../login_sign_up/normal_login_screen.dart';
-import '../login_sign_up/normal_sign_up_screen.dart';
-import '../login_sign_up/sign_in_with_face_book_screen.dart';
-import '../login_sign_up/sign_in_with_google_screen.dart';
-import '../login_sign_up/sign_in_with_phone_screen.dart';
+import '../../../utils/color_utils.dart';
+import 'login_sign_up/anonymously_login_screen.dart';
+import 'login_sign_up/forgot_password_screen.dart';
+import 'login_sign_up/login_with_apple_screen.dart';
+import 'login_sign_up/normal_login_screen.dart';
+import 'login_sign_up/normal_sign_up_screen.dart';
+import 'login_sign_up/sign_in_with_face_book_screen.dart';
+import 'login_sign_up/sign_in_with_google_screen.dart';
+import 'login_sign_up/sign_in_with_phone_screen.dart';
 
-class FeatureDetailsScreen extends StatelessWidget {
-  const FeatureDetailsScreen({Key? key}) : super(key: key);
+class SignInDetailsScreen extends StatelessWidget {
+  const SignInDetailsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

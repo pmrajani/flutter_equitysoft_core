@@ -1,14 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_equitysoft_core/controller/normal_login_controller.dart';
-import 'package:flutter_equitysoft_core/service/firebase_auth/auth_service.dart';
 import 'package:flutter_equitysoft_core/utils/color_utils.dart';
 import 'package:get/get.dart';
 
-import '../../utils/function_utils.dart';
+import '../../../utils/function_utils.dart';
+import '../../controller/normal_login_controller.dart';
+import '../../auth_service/social_media_auth_service.dart';
 
-class NormalSignUpScreen extends StatelessWidget {
-  NormalSignUpScreen({Key? key}) : super(key: key);
+class NormalLoginScreen extends StatelessWidget {
+  NormalLoginScreen({Key? key}) : super(key: key);
 
   final NormalLoginController controller = Get.put(NormalLoginController());
 
@@ -21,7 +20,7 @@ class NormalSignUpScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Sign Up With Email And Password"),
+          title: const Text("Sign In With Email And Password"),
         ),
         body: _bodyWidget(),
       ),
@@ -77,11 +76,11 @@ class NormalSignUpScreen extends StatelessWidget {
                       title: "Password Is Empty",
                       message: "Please enter your password");
                 } else {
-                  _signUp();
+                  _signIn();
                 }
               },
               child: const Text(
-                "Sign Up",
+                "Sign In",
               ),
               style: ButtonStyle(
                 backgroundColor:
@@ -99,13 +98,13 @@ class NormalSignUpScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _signUp() async {
-    UserCredential? credential = await AuthService.signUp(
+  Future<void> _signIn() async {
+    controller.userId = await SocialMediaAuthService.singIn(
       email: controller.emailTextController.value.text,
       password: controller.passwordTextController.value.text,
     );
 
-    if (credential!.user != null) {
+    if (controller.userId.isNotEmpty) {
       CommonValidate.snackBar(
         title: "Success",
         message: "Sign in successfully with email",
@@ -121,7 +120,7 @@ class NormalSignUpScreen extends StatelessWidget {
 
   Future<void> _signOut() async {
     if (controller.userId.isNotEmpty) {
-      await AuthService.signOut();
+      await SocialMediaAuthService.signOut();
     }
     Get.back();
   }

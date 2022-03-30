@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_equitysoft_core/utils/color_utils.dart';
 import 'package:get/get.dart';
 
+import '../../../utils/function_utils.dart';
 import '../../controller/sign_in_with_controller.dart';
-import '../../service/firebase_auth/auth_service.dart';
-import '../../utils/function_utils.dart';
+import '../../auth_service/social_media_auth_service.dart';
 
 class AnonymouslyLoginScreen extends StatelessWidget {
   AnonymouslyLoginScreen({Key? key}) : super(key: key);
@@ -67,7 +67,7 @@ class AnonymouslyLoginScreen extends StatelessWidget {
   }
 
   Future<void> _signIn() async {
-    controller.user = await AuthService.singInAnonymously();
+    controller.user = await SocialMediaAuthService.singInAnonymously();
 
     if (controller.user != null) {
       CommonValidate.snackBar(
@@ -85,7 +85,7 @@ class AnonymouslyLoginScreen extends StatelessWidget {
 
   Future<void> _signOut() async {
     if (controller.user != null) {
-      await AuthService.signOut();
+      await SocialMediaAuthService.signOut();
     }
     Get.back();
   }

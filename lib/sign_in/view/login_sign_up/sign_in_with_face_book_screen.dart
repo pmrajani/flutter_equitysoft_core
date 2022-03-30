@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_equitysoft_core/utils/image_utils.dart';
 import 'package:get/get.dart';
 
+import '../../../utils/function_utils.dart';
 import '../../controller/sign_in_with_controller.dart';
-import '../../service/firebase_auth/auth_service.dart';
-import '../../utils/function_utils.dart';
-import '../../utils/image_utils.dart';
+import '../../auth_service/social_media_auth_service.dart';
 
-class SignInWithGoogleScreen extends StatelessWidget {
-  SignInWithGoogleScreen({Key? key}) : super(key: key);
+/// NOTE : CREATE YOUR HASE KEY :
+/// https://tomeko.net/online_tools/hex_to_base64.php
+
+class SignInWithFaceBookScreen extends StatelessWidget {
+  SignInWithFaceBookScreen({Key? key}) : super(key: key);
 
   final SignInWithController controller = Get.put(SignInWithController());
 
@@ -20,7 +23,7 @@ class SignInWithGoogleScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Sign In With Google"),
+          title: const Text("Sign In With FaceBook"),
         ),
         body: _bodyWidget(),
       ),
@@ -34,41 +37,41 @@ class SignInWithGoogleScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _getGoogleLogIn(),
+            _getFacebookLogIn(),
           ],
         ),
       ),
     );
   }
 
-  Widget _getGoogleLogIn() {
+  Widget _getFacebookLogIn() {
     return SizedBox(
       width: double.infinity,
       height: 40,
       child: ElevatedButton(
         onPressed: () {
-          _signInWithGoogle();
+          _signInWithFB();
         },
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 4.0),
-              child: Image.asset(
-                ImageUtils.googleLogo,
-                height: 35.0,
-                width: 35.0,
-              ),
+            Image.asset(
+              ImageUtils.fbLogo,
+              height: 40.0,
+              width: 40.0,
             ),
             const Spacer(),
-            const Text(
-              "Sign In With Google",
+            Text(
+              "Log In With Facebook",
+              style: Get.textTheme.bodyText2!.copyWith(
+                color: Colors.white,
+              ),
             ),
             const Spacer(),
           ],
         ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            Colors.redAccent,
+            Colors.blue,
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
@@ -80,13 +83,13 @@ class SignInWithGoogleScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _signInWithGoogle() async {
-    controller.user = await AuthService.googleSignIn();
+  Future<void> _signInWithFB() async {
+    controller.user = await SocialMediaAuthService.faceBookSignIn();
 
     if (controller.user != null) {
       CommonValidate.snackBar(
         title: "Success",
-        message: "Sign in successfully with google",
+        message: "Sign in successfully with facebook",
         isSuccess: true,
       );
     } else {
@@ -99,7 +102,7 @@ class SignInWithGoogleScreen extends StatelessWidget {
 
   Future<void> _signOut() async {
     if (controller.user != null) {
-      await AuthService.signOutGoogle();
+      await SocialMediaAuthService.signOutFaceBook();
     }
     Get.back();
   }

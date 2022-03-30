@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_equitysoft_core/utils/color_utils.dart';
 import 'package:get/get.dart';
 
-import 'feature_details_screen.dart';
+import '../sign_in/view/sign_in_details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
               title: "Sign In",
               auther: "Rajan Rajani",
               onTap: () {
-                Get.to(() => const FeatureDetailsScreen());
+                Get.to(() => const SignInDetailsScreen());
               },
             ),
             _cardView(

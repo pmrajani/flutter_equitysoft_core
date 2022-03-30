@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_equitysoft_core/controller/normal_login_controller.dart';
-import 'package:flutter_equitysoft_core/service/firebase_auth/auth_service.dart';
-import 'package:flutter_equitysoft_core/utils/color_utils.dart';
 import 'package:get/get.dart';
 
-import '../../utils/function_utils.dart';
+import '../../../utils/color_utils.dart';
+import '../../../utils/function_utils.dart';
+import '../../controller/normal_login_controller.dart';
+import '../../auth_service/social_media_auth_service.dart';
 
-class NormalLoginScreen extends StatelessWidget {
-  NormalLoginScreen({Key? key}) : super(key: key);
+class ForgotPasswordScreen extends StatelessWidget {
+  ForgotPasswordScreen({Key? key}) : super(key: key);
 
   final NormalLoginController controller = Get.put(NormalLoginController());
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () {
-        _signOut();
-        return Future<bool>.value(false);
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Sign In With Email And Password"),
-        ),
-        body: _bodyWidget(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Sign In With Email And Password"),
       ),
+      body: _bodyWidget(),
     );
   }
 
@@ -46,21 +40,6 @@ class NormalLoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20.0,
-            ),
-            TextFormField(
-              controller: controller.passwordTextController.value,
-              keyboardType: TextInputType.text,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: "Password",
-                hintText: "Enter Password",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-              ),
-            ),
-            const SizedBox(
               height: 30.0,
             ),
             ElevatedButton(
@@ -70,17 +49,12 @@ class NormalLoginScreen extends StatelessWidget {
                   return CommonValidate.snackBar(
                       title: "Email Not Correct",
                       message: "Please enter valid email address");
-                } else if (controller
-                    .passwordTextController.value.text.isEmpty) {
-                  return CommonValidate.snackBar(
-                      title: "Password Is Empty",
-                      message: "Please enter your password");
                 } else {
-                  _signIn();
+                  _sendLink();
                 }
               },
               child: const Text(
-                "Sign In",
+                "Forgot Password",
               ),
               style: ButtonStyle(
                 backgroundColor:
@@ -98,30 +72,22 @@ class NormalLoginScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _signIn() async {
-    controller.userId = await AuthService.singIn(
+  Future<void> _sendLink() async {
+    bool result = await SocialMediaAuthService.forgotPassword(
       email: controller.emailTextController.value.text,
-      password: controller.passwordTextController.value.text,
     );
 
-    if (controller.userId.isNotEmpty) {
+    if (result) {
       CommonValidate.snackBar(
         title: "Success",
-        message: "Sign in successfully with email",
+        message: "Forgot password reset link sent successfully to your email",
         isSuccess: true,
       );
     } else {
       CommonValidate.snackBar(
-        title: "Failed",
-        message: "Please Try Again",
+        title: "Email Not Found",
+        message: "Please check your email and try again",
       );
     }
-  }
-
-  Future<void> _signOut() async {
-    if (controller.userId.isNotEmpty) {
-      await AuthService.signOut();
-    }
-    Get.back();
   }
 }

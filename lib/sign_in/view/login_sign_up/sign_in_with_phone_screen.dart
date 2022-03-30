@@ -5,11 +5,11 @@ import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 
+import '../../../utils/color_utils.dart';
+import '../../../utils/function_utils.dart';
+import '../../../utils/logger_utils.dart';
 import '../../controller/normal_login_controller.dart';
-import '../../service/firebase_auth/auth_service.dart';
-import '../../utils/color_utils.dart';
-import '../../utils/function_utils.dart';
-import '../../utils/logger_utils.dart';
+import '../../auth_service/social_media_auth_service.dart';
 
 class SignInWithPhoneScreen extends StatelessWidget {
   SignInWithPhoneScreen({Key? key}) : super(key: key);
@@ -200,7 +200,7 @@ class SignInWithPhoneScreen extends StatelessWidget {
     } catch (e) {
       logger.e(e);
       controller.isLoading.value = false;
-      if (e.toString() == AuthService.errWrongOTP) {
+      if (e.toString() == SocialMediaAuthService.errWrongOTP) {
         CommonValidate.snackBar(
             title: "Incorrect OTP".tr,
             message: "Please check your OTP and re-enter OTP".tr);
@@ -216,7 +216,7 @@ class SignInWithPhoneScreen extends StatelessWidget {
 
   Future<void> _signOut() async {
     if (controller.userId.isNotEmpty) {
-      await AuthService.signOut();
+      await SocialMediaAuthService.signOut();
     }
     Get.back();
   }
